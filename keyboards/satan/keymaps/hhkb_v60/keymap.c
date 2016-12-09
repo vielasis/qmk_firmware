@@ -1,16 +1,9 @@
 #include "satan.h"
 
-
-// Used for SHIFT_ESC
-#define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-
 // Layer Names
 #define _MAIN_LAYER 0
 #define _OVERLAY_LAYER 1
 #define _ARROW_LAYER 2
-
-// Readability
-#define ______ KC_TRNS
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Base
@@ -27,11 +20,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * `-----------------------------------------------------------------------------------------'
   */
 [_MAIN_LAYER] = KEYMAP_HHKB(
-  F(0),     KC_1,    KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSLS,   KC_GRV, \
-  KC_TAB,   KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSPC, \
-  KC_LCTL,  KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT, \
-  KC_LSFT,  KC_Z,    KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_FN0, \
-  KC_CAPS,  KC_LGUI, KC_LALT,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_MENU,  KC_RCTRL),
+  FN(0),   1,   2,   3,   4,   5,   6,   7,   8,   9,   0,  MINS,  EQL, BSLS,  GRV, \
+  TAB,     Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  LBRC,  RBRC,   BSPC,    \
+  LCTL,    A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,      QUOT,   ENT,     \
+  LSFT,         Z,   X,   C,   V,   B,   N,   M,   COMM,    DOT,  SLSH, RSFT, FN(1),\
+  CAPS, LGUI, LALT,                SPC,                     RALT, RGUI, MENU, RCTRL ),
   /* Overlay
   * ,-----------------------------------------------------------------------------------------.
   * |  `  | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10 | F11 | F12 |     |Prsc |
@@ -40,17 +33,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----------------------------------------------------------------------------------------+
   * |         |  ←  |  ↓  |  →  |     |     |     |     |     |     |     |     |     FN1     |
   * |-----------------------------------------------------------------------------------------+
-  * |           |     |     |     |     |     |     |     |     |     |     |     ↑     | FN0 |
+  * |           |     |     |     |     |     |     |     |     |     |     |     ↑     |     |
   * |-----------------------------------------------------------------------------------------+
   * |       |       |       |                                 |       |   ←   |   ↓   |   →   |
   * `-----------------------------------------------------------------------------------------'
   */
 [_OVERLAY_LAYER] = KEYMAP_HHKB(
-  KC_GRV,   KC_F1,    KC_F2,   KC_F3,    KC_F4,     KC_F5,    KC_F6,    KC_F7,   KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   ______,   KC_PSCR, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,   ______,   ______,   ______, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,   ______,   KC_FN1, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,    KC_UP,   KC_FN0, \
-  ______,  ______,   ______,   ______,   ______,   KC_LEFT,  KC_DOWN,  KC_RIGHT),
+  GRV,    F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10,  F11,  F12,  ___, PSCR, \
+  ___,   ___, ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,  ___,     ___,    \
+  ___,   ___, ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,           FN(2),  \
+  ___,        ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,          UP, ___, \
+  ___,   ___,  ___,                 ___,                        ___, LEFT,DOWN,RIGHT),
   /* Arrow
   * ,-----------------------------------------------------------------------------------------.
   * |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
@@ -65,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * `-----------------------------------------------------------------------------------------'
   */
 [_ARROW_LAYER] = KEYMAP_HHKB(
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,   ______,   ______,   ______, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,   ______,   ______, \
-  ______,  ______,   ______,   ______,   ______,   ______,   ______,   ______,  ______,   ______,   ______,    KC_UP,   KC_FN0, \
-  ______,  ______,   ______,   ______,   ______,   KC_LEFT,  KC_DOWN,  KC_RIGHT)
+  ___,   ___, ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,  ___,  ___,  ___, \
+  ___,   ___, ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,  ___,   ___,      \
+  ___,   ___, ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,         ___,      \
+  ___,        ___, ___, ___, ___, ___, ___, ___, ___,  ___,  ___,          UP, ___, \
+  ___,   ___,  ___,                 ___,                        ___, LEFT,DOWN,RIGHT),
 
 };
 
@@ -78,8 +71,12 @@ enum function_id {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
-  [0]  = ACTION_FUNCTION(SHIFT_ESC),
+  [0] = ACTION_FUNCTION(SHIFT_ESC),
+  [1] = ACTION_LAYER_MOMENTARY(1),
+  [2] = ACTION_LAYER_TOGGLE(2)
 };
+
+#define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   static uint8_t shift_esc_shift_mask;
